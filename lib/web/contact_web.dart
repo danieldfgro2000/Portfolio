@@ -92,7 +92,71 @@ class _ContactWebState extends State<ContactWeb> {
             )
           ];
         },
-        body: SingleChildScrollView(),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 30),
+              const SansBold("Contact Me", 30),
+              const SizedBox(height: 20),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Column(
+                    children: [
+                      TextForm(
+                        text: "First Name",
+                        containerWidth: 350,
+                        hint: "Please input you name",
+                      ),
+                      SizedBox(height: 20),
+                      TextForm(
+                        text: "Email",
+                        containerWidth: 350,
+                        hint: "Please input your email",
+                      ),
+                      SizedBox(height: 20),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      TextForm(
+                        text: "Last Name",
+                        containerWidth: 350,
+                        hint: "Please input your last name",
+                      ),
+                      SizedBox(height: 20),
+                      TextForm(
+                        text: "Phone Number",
+                        containerWidth: 350,
+                        hint: "Please input your phone number",
+                      ),
+                      SizedBox(height: 20),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              TextForm(
+                text: "Message",
+                containerWidth: widthDevice * 0.9,
+                hint: "Please input your message",
+                maxLines: 10,
+              ),
+              const SizedBox(height: 20),
+              MaterialButton(
+                  elevation: 20,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  height: 60,
+                  minWidth: 200,
+                  color: Colors.blue,
+                  onPressed: () {},
+                  child: const SansBold("Submit", 20))
+            ],
+          ),
+        ),
       ),
     );
   }
