@@ -48,20 +48,20 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
       body: ListView(
         children: [
           // Intro, First Section
+          const CircleAvatar(
+            radius: 117,
+            backgroundColor: Colors.blue,
+            child: CircleAvatar(
+              radius: 110,
+              backgroundColor: Colors.white,
+              backgroundImage: AssetImage("assets/images/dan.JPG"),
+            ),
+          ),
           Padding(
-            padding: const EdgeInsets.only(left: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CircleAvatar(
-                  radius: 117,
-                  backgroundColor: Colors.blue,
-                  child: CircleAvatar(
-                    radius: 110,
-                    backgroundColor: Colors.white,
-                    backgroundImage: AssetImage("assets/images/dan.JPG"),
-                  ),
-                ),
                 const SizedBox(height: 20),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,7 +87,7 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
                 ),
                 const SizedBox(height: 15),
                 const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Wrap(
                       direction: Axis.vertical,
@@ -119,7 +119,7 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
 
           // About, Second Section
           Padding(
-            padding: const EdgeInsets.only(left: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
