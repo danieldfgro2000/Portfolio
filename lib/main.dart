@@ -1,8 +1,9 @@
+import 'package:dynamic_path_url_strategy/dynamic_path_url_strategy.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio/mobile/landing_page_mobile.dart';
-import 'package:portfolio/web/landing_page_web.dart';
+import 'package:portfolio/routes.dart';
 
 void main() {
+  setPathUrlStrategy();
   runApp(const MyApp());
 }
 
@@ -13,18 +14,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Portfolio',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: LayoutBuilder(builder: (context, constraints) {
-        if (constraints.maxWidth < 600) {
-          return LandingPageMobile();
-        } else {
-          return LandingPageWeb();
-        }
-      }),
+      onGenerateRoute: (settings) => Routes.generateRoute(settings),
+      initialRoute: '/',
     );
   }
 }

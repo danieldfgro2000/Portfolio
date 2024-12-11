@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:portfolio/components.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LandingPageWeb extends StatefulWidget {
   const LandingPageWeb({super.key});
@@ -9,13 +11,59 @@ class LandingPageWeb extends StatefulWidget {
 }
 
 class _LandingPageWebState extends State<LandingPageWeb> {
+  urlLauncher(String imagePath, String url) {
+    return IconButton(
+      icon: SvgPicture.asset(imagePath, width: 35),
+      onPressed: () async {
+        await launchUrl(Uri.parse(url));
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var heightDevice = MediaQuery.of(context).size.height;
     var widthDevice = MediaQuery.of(context).size.width;
 
     return Scaffold(
-        drawer: const Drawer(),
+        drawer: Drawer(
+          backgroundColor: Colors.white,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const CircleAvatar(
+                radius: 72,
+                backgroundColor: Colors.blue,
+                child: CircleAvatar(
+                  radius: 70,
+                  backgroundColor: Colors.white,
+                  backgroundImage: AssetImage("assets/images/dan.jpg"),
+                ),
+              ),
+              const SizedBox(height: 15),
+              const SansBold("Daniel Muncaciu", 30),
+              const SizedBox(height: 15),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  urlLauncher(
+                    "assets/images/instagram.svg",
+                    "https://github.com/DanielMuncaciu",
+                  ),
+                  urlLauncher(
+                    "assets/images/github.svg",
+                    "https://github.com/danieldfgro2000",
+                  ),
+
+                  urlLauncher(
+                    "assets/images/twitter.svg",
+                    "https://twitter.com/DanMuncaciu",
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
         backgroundColor: Colors.white,
         appBar: AppBar(
           title: const Row(children: [
@@ -279,79 +327,30 @@ class _LandingPageWebState extends State<LandingPageWeb> {
             // Third Page
             SizedBox(
               height: heightDevice * 0.8,
-              child: Column(
+              child: const Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const SansBold("What I do?", 40),
+                  SansBold("What I do?", 40),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Card(
-                        elevation: 30,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        shadowColor: Colors.blue,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Image.asset(
-                                "assets/images/webL.png",
-                                height: 200,
-                                width: 200,
-                              ),
-                              const SizedBox(height: 10),
-                              const SansBold("Web development", 15)
-                            ],
-                          ),
-                        ),
+                      AnimatedCardWeb(
+                        imagePath: "assets/images/webL.png",
+                        text: "Web development",
+                        fit: BoxFit.contain,
+                        reverse: true,
                       ),
-                      Card(
-                        elevation: 30,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        shadowColor: Colors.blue,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Image.asset(
-                                "assets/images/app.png",
-                                height: 200,
-                                width: 200,
-                                fit: BoxFit.contain,
-                              ),
-                              const SizedBox(height: 10),
-                              const SansBold("App development", 15)
-                            ],
-                          ),
-                        ),
+                      AnimatedCardWeb(
+                        imagePath: "assets/images/app.png",
+                        text: "App development",
+                        fit: BoxFit.contain,
+                        reverse: false,
                       ),
-                      Card(
-                        elevation: 30,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        shadowColor: Colors.blue,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Image.asset(
-                                "assets/images/firebase.png",
-                                height: 200,
-                                width: 200,
-                              ),
-                              const SizedBox(height: 10),
-                              const SansBold("Backend development", 15)
-                            ],
-                          ),
-                        ),
+                      AnimatedCardWeb(
+                        imagePath: "assets/images/firebase.png",
+                        text: "Backend development",
+                        fit: BoxFit.contain,
+                        reverse: true,
                       ),
                     ],
                   )
@@ -384,7 +383,6 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                                 heading: "Email",
                                 hint: "Please enter your email",
                               ),
-
                             ],
                           ),
                           Column(
@@ -410,6 +408,18 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                         hint: "Please enter your message $widthDevice",
                         maxLines: 5,
                       ),
+                      const SizedBox(height: 10),
+                      MaterialButton(
+                          elevation: 20,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          height: 40,
+                          minWidth: 200,
+                          color: Colors.blue,
+                          child: const Text("Submit"),
+                          onPressed: () {}),
+                      const SizedBox(height: 10),
                     ],
                   )
                 ],

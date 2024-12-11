@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TabsWeb extends StatefulWidget {
@@ -22,7 +23,7 @@ class _TabsWebState extends State<TabsWeb> {
         duration: const Duration(milliseconds: 100),
         curve: Curves.elasticIn,
         style: isHover
-            ? GoogleFonts.oswald(
+            ? GoogleFonts.roboto(
                 shadows: [
                     const Shadow(
                       color: Colors.black,
@@ -34,14 +35,30 @@ class _TabsWebState extends State<TabsWeb> {
                 decoration: TextDecoration.underline,
                 decorationThickness: 2,
                 decorationColor: Colors.black)
-            : GoogleFonts.oswald(
-                color: Colors.black, fontSize: 24, decoration: TextDecoration.none),
+            : GoogleFonts.roboto(
+                color: Colors.black, fontSize: 20, decoration: TextDecoration.none),
         child: Text(
           widget.title,
           // style: GoogleFonts.oswald(color: Colors.black, fontSize: 24),
         ),
       ),
     );
+  }
+}
+
+class TabsMobile extends StatefulWidget {
+  final String text;
+  final String route;
+  const TabsMobile({super.key, required this.text, required this.route});
+
+  @override
+  State<TabsMobile> createState() => _TabsMobileState();
+}
+
+class _TabsMobileState extends State<TabsMobile> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
 
@@ -100,6 +117,9 @@ class TextForm extends StatelessWidget {
         SizedBox(
           width: width,
           child: TextFormField(
+            inputFormatters: [
+              FilteringTextInputFormatter.allow((RegExp(r'[a-z A-Z0-9]'))),
+            ],
             maxLines: maxLines,
             decoration: InputDecoration(
               enabledBorder: const OutlineInputBorder(
@@ -116,6 +136,74 @@ class TextForm extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class AnimatedCardWeb extends StatefulWidget {
+  final String imagePath;
+  final String text;
+  final BoxFit? fit;
+  final bool? reverse;
+
+  const AnimatedCardWeb(
+      {super.key, required this.imagePath, required this.text, this.fit, this.reverse});
+
+  @override
+  State<AnimatedCardWeb> createState() => _AnimatedCardWebState();
+}
+
+class _AnimatedCardWebState extends State<AnimatedCardWeb> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<Offset> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 4),
+    )..repeat(reverse: true);
+    _animation = Tween(
+      begin: widget.reverse == true ? const Offset(0, 0.08) : Offset.zero,
+      end: widget.reverse == true ? Offset.zero : const Offset(0, 0.08),
+    ).animate(_controller);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SlideTransition(
+      position: _animation,
+      child: Card(
+        elevation: 30,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: const BorderSide(color: Colors.blue, width: 2),
+        ),
+        shadowColor: Colors.blue,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.asset(
+                widget.imagePath,
+                height: 200,
+                width: 200,
+                fit: widget.fit,
+              ),
+              const SizedBox(height: 10),
+              SansBold(widget.text, 15)
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
