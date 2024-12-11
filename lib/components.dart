@@ -4,8 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 class TabsWeb extends StatefulWidget {
   final String title;
+  final String route;
 
-  const TabsWeb(this.title, {super.key});
+  const TabsWeb({super.key, required this.title, required this.route});
 
   @override
   State<TabsWeb> createState() => _TabsWebState();
@@ -16,30 +17,35 @@ class _TabsWebState extends State<TabsWeb> {
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (_) => setState(() => isHover = true),
-      onExit: (_) => setState(() => isHover = false),
-      child: AnimatedDefaultTextStyle(
-        duration: const Duration(milliseconds: 100),
-        curve: Curves.elasticIn,
-        style: isHover
-            ? GoogleFonts.roboto(
-                shadows: [
-                    const Shadow(
-                      color: Colors.black,
-                      offset: Offset(0, -3),
-                    )
-                  ],
-                color: Colors.transparent,
-                fontSize: 26,
-                decoration: TextDecoration.underline,
-                decorationThickness: 2,
-                decorationColor: Colors.black)
-            : GoogleFonts.roboto(
-                color: Colors.black, fontSize: 20, decoration: TextDecoration.none),
-        child: Text(
-          widget.title,
-          // style: GoogleFonts.oswald(color: Colors.black, fontSize: 24),
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).pushNamed(widget.route);
+      },
+      child: MouseRegion(
+        onEnter: (_) => setState(() => isHover = true),
+        onExit: (_) => setState(() => isHover = false),
+        child: AnimatedDefaultTextStyle(
+          duration: const Duration(milliseconds: 100),
+          curve: Curves.elasticIn,
+          style: isHover
+              ? GoogleFonts.roboto(
+                  shadows: [
+                      const Shadow(
+                        color: Colors.black,
+                        offset: Offset(0, -3),
+                      )
+                    ],
+                  color: Colors.transparent,
+                  fontSize: 26,
+                  decoration: TextDecoration.underline,
+                  decorationThickness: 2,
+                  decorationColor: Colors.black)
+              : GoogleFonts.roboto(
+                  color: Colors.black, fontSize: 20, decoration: TextDecoration.none),
+          child: Text(
+            widget.title,
+            // style: GoogleFonts.oswald(color: Colors.black, fontSize: 24),
+          ),
         ),
       ),
     );
@@ -49,6 +55,7 @@ class _TabsWebState extends State<TabsWeb> {
 class TabsMobile extends StatefulWidget {
   final String text;
   final String route;
+
   const TabsMobile({super.key, required this.text, required this.route});
 
   @override
@@ -58,7 +65,21 @@ class TabsMobile extends StatefulWidget {
 class _TabsMobileState extends State<TabsMobile> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialButton(
+        elevation: 20,
+        color: Colors.blue,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5),
+        ),
+        minWidth: 200,
+        height: 50,
+        child: Text(
+          widget.text,
+          style: GoogleFonts.openSans(fontSize: 20, color: Colors.white),
+        ),
+        onPressed: () {
+          Navigator.of(context).pushNamed(widget.route);
+        });
   }
 }
 
@@ -93,29 +114,30 @@ class Sans extends StatelessWidget {
 }
 
 class TextForm extends StatelessWidget {
-  final double width;
-  final String heading;
+  final double containerWidth;
+  final String text;
   final String hint;
   final int maxLines;
 
-  const TextForm(
-      {required this.width,
-      required this.heading,
-      required this.hint,
-      this.maxLines = 1,
-      super.key});
+  const TextForm({
+    required this.containerWidth,
+    required this.text,
+    required this.hint,
+    this.maxLines = 1,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Sans(heading, 15),
+        Sans(text, 15),
         const SizedBox(
           height: 10,
         ),
         SizedBox(
-          width: width,
+          width: containerWidth,
           child: TextFormField(
             inputFormatters: [
               FilteringTextInputFormatter.allow((RegExp(r'[a-z A-Z0-9]'))),
@@ -140,20 +162,28 @@ class TextForm extends StatelessWidget {
   }
 }
 
-class AnimatedCardWeb extends StatefulWidget {
+class AnimatedCard extends StatefulWidget {
   final String imagePath;
   final String text;
   final BoxFit? fit;
   final bool? reverse;
+  final double? cardWidth;
+  final double? cardHeight;
 
-  const AnimatedCardWeb(
-      {super.key, required this.imagePath, required this.text, this.fit, this.reverse});
+  const AnimatedCard(
+      {super.key,
+      required this.imagePath,
+      required this.text,
+      this.fit,
+      this.reverse,
+      this.cardWidth,
+      this.cardHeight});
 
   @override
-  State<AnimatedCardWeb> createState() => _AnimatedCardWebState();
+  State<AnimatedCard> createState() => _AnimatedCardState();
 }
 
-class _AnimatedCardWebState extends State<AnimatedCardWeb> with SingleTickerProviderStateMixin {
+class _AnimatedCardState extends State<AnimatedCard> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Offset> _animation;
 
@@ -194,8 +224,8 @@ class _AnimatedCardWebState extends State<AnimatedCardWeb> with SingleTickerProv
             children: [
               Image.asset(
                 widget.imagePath,
-                height: 200,
-                width: 200,
+                height: widget.cardHeight ?? 200,
+                width: widget.cardWidth ?? 200,
                 fit: widget.fit,
               ),
               const SizedBox(height: 10),

@@ -54,7 +54,6 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                     "assets/images/github.svg",
                     "https://github.com/danieldfgro2000",
                   ),
-
                   urlLauncher(
                     "assets/images/twitter.svg",
                     "https://twitter.com/DanMuncaciu",
@@ -70,13 +69,13 @@ class _LandingPageWebState extends State<LandingPageWeb> {
             Spacer(
               flex: 3,
             ),
-            TabsWeb("Home"),
+            TabsWeb(title: "Home", route: '/'),
             Spacer(),
-            TabsWeb("Works"),
+            TabsWeb(title: "Works", route: '/works'),
             Spacer(),
-            TabsWeb("About"),
+            TabsWeb(title: "About", route: '/about'),
             Spacer(),
-            TabsWeb("Contact"),
+            TabsWeb(title: "Contact", route: '/contact'),
             Spacer(),
           ]),
           centerTitle: true,
@@ -334,19 +333,19 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      AnimatedCardWeb(
+                      AnimatedCard(
                         imagePath: "assets/images/webL.png",
                         text: "Web development",
                         fit: BoxFit.contain,
                         reverse: true,
                       ),
-                      AnimatedCardWeb(
+                      AnimatedCard(
                         imagePath: "assets/images/app.png",
                         text: "App development",
                         fit: BoxFit.contain,
                         reverse: false,
                       ),
-                      AnimatedCardWeb(
+                      AnimatedCard(
                         imagePath: "assets/images/firebase.png",
                         text: "Backend development",
                         fit: BoxFit.contain,
@@ -374,13 +373,13 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                           Column(
                             children: [
                               TextForm(
-                                  width: widthDevice * 0.4,
-                                  heading: "First name",
+                                  containerWidth: widthDevice * 0.4,
+                                  text: "First name",
                                   hint: "Please enter your first name"),
                               const SizedBox(height: 10),
                               TextForm(
-                                width: widthDevice * 0.4,
-                                heading: "Email",
+                                containerWidth: widthDevice * 0.4,
+                                text: "Email",
                                 hint: "Please enter your email",
                               ),
                             ],
@@ -388,13 +387,13 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                           Column(
                             children: [
                               TextForm(
-                                  width: widthDevice * 0.4,
-                                  heading: "Last name",
+                                  containerWidth: widthDevice * 0.4,
+                                  text: "Last name",
                                   hint: "Please enter your last name"),
                               const SizedBox(height: 10),
                               TextForm(
-                                width: widthDevice * 0.4,
-                                heading: "Phone",
+                                containerWidth: widthDevice * 0.4,
+                                text: "Phone",
                                 hint: "Please enter your phone",
                               ),
                             ],
@@ -403,8 +402,8 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                       ),
                       const SizedBox(height: 10),
                       TextForm(
-                        width: widthDevice * 0.9,
-                        heading: "Message",
+                        containerWidth: widthDevice * 0.9,
+                        text: "Message",
                         hint: "Please enter your message $widthDevice",
                         maxLines: 5,
                       ),
