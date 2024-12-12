@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:portfolio/components.dart';
-import 'package:portfolio/mobile/blog_mobile.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class BlogWeb extends StatefulWidget {
@@ -104,8 +103,8 @@ class _BlogWebState extends State<BlogWeb> {
           ];
         },
         body: ListView(
-          children: const [BlogPost(), BlogPost(), BlogPost()],
-        ),
+            // children: const [BlogPost(), BlogPost(), BlogPost()],
+            ),
       ),
     ));
     ;

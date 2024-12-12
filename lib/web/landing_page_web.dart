@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:logger/logger.dart';
 import 'package:portfolio/components.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -19,6 +20,13 @@ class _LandingPageWebState extends State<LandingPageWeb> {
       },
     );
   }
+
+  var logger = Logger();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _messageController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -375,11 +383,13 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                           Column(
                             children: [
                               TextForm(
+                                  controller: _firstNameController,
                                   containerWidth: widthDevice * 0.4,
                                   text: "First name",
                                   hint: "Please enter your first name"),
                               const SizedBox(height: 10),
                               TextForm(
+                                controller: _emailController,
                                 containerWidth: widthDevice * 0.4,
                                 text: "Email",
                                 hint: "Please enter your email",
@@ -389,11 +399,13 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                           Column(
                             children: [
                               TextForm(
+                                  controller: _lastNameController,
                                   containerWidth: widthDevice * 0.4,
                                   text: "Last name",
                                   hint: "Please enter your last name"),
                               const SizedBox(height: 10),
                               TextForm(
+                                controller: _phoneController,
                                 containerWidth: widthDevice * 0.4,
                                 text: "Phone",
                                 hint: "Please enter your phone",
@@ -404,6 +416,7 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                       ),
                       const SizedBox(height: 10),
                       TextForm(
+                        controller: _messageController,
                         containerWidth: widthDevice * 0.9,
                         text: "Message",
                         hint: "Please enter your message $widthDevice",
@@ -419,7 +432,9 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                           minWidth: 200,
                           color: Colors.blue,
                           child: const Text("Submit"),
-                          onPressed: () {}),
+                          onPressed: () {
+                            logger.d(_firstNameController.text);
+                          }),
                       const SizedBox(height: 10),
                     ],
                   )

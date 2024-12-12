@@ -139,12 +139,14 @@ class TextForm extends StatelessWidget {
   final String text;
   final String hint;
   final int maxLines;
+  final TextEditingController? controller;
 
   const TextForm({
     required this.containerWidth,
     required this.text,
     required this.hint,
     this.maxLines = 1,
+    this.controller,
     super.key,
   });
 
@@ -160,6 +162,7 @@ class TextForm extends StatelessWidget {
         SizedBox(
           width: containerWidth,
           child: TextFormField(
+            controller: controller,
             inputFormatters: [
               FilteringTextInputFormatter.allow((RegExp(r'[a-z A-Z0-9]'))),
             ],
