@@ -106,6 +106,7 @@ class _AboutWebState extends State<AboutWeb> {
       ),
       body: ListView(
         children: [
+          // About me, fist section
           SizedBox(
             height: 500,
             child: Row(
@@ -155,7 +156,88 @@ class _AboutWebState extends State<AboutWeb> {
                 ),
               ],
             ),
-          )
+          ),
+
+          // Web development, second section
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const AnimatedCard(
+                imagePath: "assets/images/webL.png",
+                cardHeight: 250,
+                cardWidth: 250,
+              ),
+              SizedBox(
+                width: widthDevice / 3,
+                child: const Column(
+                  children: [
+                    SansBold("Web Development", 30),
+                    SizedBox(height: 15),
+                    Sans(
+                      "I'm here to build your presence online with state of the art web apps.",
+                      15,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+
+          // App development, third section
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SizedBox(
+                width: widthDevice / 3,
+                child: const Column(
+                  children: [
+                    SansBold("App Development", 30),
+                    SizedBox(height: 15),
+                    Sans(
+                      "Do you need a high performance, responsive and beautiful app? Don't worry, I've got you covvered.",
+                      15,
+                    ),
+                  ],
+                ),
+              ),
+              const AnimatedCard(
+                imagePath: "assets/images/app.png",
+                cardWidth: 250,
+                cardHeight: 250,
+                reverse: true,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+            ],
+          ),
+
+          // Backend development, fourth section
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const AnimatedCard(
+                imagePath: "assets/images/firebase.png",
+                cardWidth: 250,
+                cardHeight: 250,
+              ),
+              SizedBox(
+                width: widthDevice / 3,
+                child: const Column(
+                  children: [
+                    SansBold("Back-end Development", 30),
+                    SizedBox(height: 15),
+                    Sans(
+                      "Do you want your backend to be highly scalable and secure? Let's have a conversation on how I can help you with that.",
+                      15,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 40),
         ],
       ),
     );
