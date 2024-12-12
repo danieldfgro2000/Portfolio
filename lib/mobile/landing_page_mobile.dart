@@ -126,7 +126,7 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
               children: [
                 const SansBold("About me", 35),
                 const Sans("Hello! I'm Daniel Muncaciu, I specialize in flutter development", 15),
-                const Sans("I strive to ensure astounding performence with state of", 15),
+                const Sans("I strive to ensure astounding performance with state of", 15),
                 const Sans("the art security for Android, iOS, Web, Mac and Linux", 15),
                 const SizedBox(height: 10),
                 tealContainer("Firebase", Colors.amber, null),

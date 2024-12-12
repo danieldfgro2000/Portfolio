@@ -164,7 +164,7 @@ class TextForm extends StatelessWidget {
 
 class AnimatedCard extends StatefulWidget {
   final String imagePath;
-  final String text;
+  final String? text;
   final BoxFit? fit;
   final bool? reverse;
   final double? cardWidth;
@@ -173,7 +173,7 @@ class AnimatedCard extends StatefulWidget {
   const AnimatedCard(
       {super.key,
       required this.imagePath,
-      required this.text,
+      this.text,
       this.fit,
       this.reverse,
       this.cardWidth,
@@ -229,7 +229,7 @@ class _AnimatedCardState extends State<AnimatedCard> with SingleTickerProviderSt
                 fit: widget.fit,
               ),
               const SizedBox(height: 10),
-              SansBold(widget.text, 15)
+              widget.text != null ? SansBold(widget.text!, 15) : const SizedBox(),
             ],
           ),
         ),
