@@ -42,7 +42,6 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text("Portfolio"),
         iconTheme: const IconThemeData(size: 35, color: Colors.black),
       ),
       body: ListView(
@@ -251,6 +250,8 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
             const TabsMobile(text: "Works", route: "/works"),
             const SizedBox(height: 20),
             const TabsMobile(text: "About", route: "/about"),
+            const SizedBox(height: 20),
+            const TabsMobile(text: "Blog", route: "/blog"),
             const SizedBox(height: 20),
             const TabsMobile(text: "Contact", route: "/contact"),
             const SizedBox(height: 20),

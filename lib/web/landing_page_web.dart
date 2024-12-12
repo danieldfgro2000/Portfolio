@@ -75,6 +75,8 @@ class _LandingPageWebState extends State<LandingPageWeb> {
             Spacer(),
             TabsWeb(title: "About", route: '/about'),
             Spacer(),
+            TabsWeb(title: "Blog", route: '/blog'),
+            Spacer(),
             TabsWeb(title: "Contact", route: '/contact'),
             Spacer(),
           ]),
