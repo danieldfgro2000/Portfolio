@@ -179,51 +179,7 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
           ),
 
           // Contact, Fourth Section
-          Wrap(
-            runSpacing: 20,
-            spacing: 20,
-            alignment: WrapAlignment.center,
-            children: [
-              const SansBold("Contact me", 35),
-              TextForm(
-                text: "First Name",
-                containerWidth: widthDevice * 0.8,
-                hint: 'Please type your first name',
-              ),
-              TextForm(
-                text: "Last Name",
-                containerWidth: widthDevice * 0.8,
-                hint: 'Please type your last name',
-              ),
-              TextForm(
-                text: "Email",
-                containerWidth: widthDevice * 0.8,
-                hint: 'Please type your email',
-              ),
-              TextForm(
-                text: "Phone",
-                containerWidth: widthDevice * 0.8,
-                hint: 'Please type your phone number',
-              ),
-              TextForm(
-                text: "Message",
-                containerWidth: widthDevice * 0.8,
-                hint: 'Please type your message',
-                maxLines: 10,
-              ),
-              MaterialButton(
-                elevation: 20,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                color: Colors.blue,
-                minWidth: 200,
-                height: 50,
-                child: const SansBold("Submit", 20),
-                onPressed: () {},
-              )
-            ],
-          )
+          const ContactFormMobile()
         ],
       ),
       endDrawer: const DrawerMobile(),

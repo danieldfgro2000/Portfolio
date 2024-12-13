@@ -11,12 +11,6 @@ class LandingPageWeb extends StatefulWidget {
 
 class _LandingPageWebState extends State<LandingPageWeb> {
   var logger = Logger();
-  final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _messageController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -308,98 +302,8 @@ class _LandingPageWebState extends State<LandingPageWeb> {
             ),
 
             // Contact Me Page
-            SizedBox(
-              height: heightDevice,
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    const SansBold("Contact Me", 40),
-                    Column(
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              children: [
-                                TextForm(
-                                    validator: (text) =>
-                                        text.isEmpty ? "Please enter your first name" : null,
-                                    controller: _firstNameController,
-                                    containerWidth: widthDevice * 0.4,
-                                    text: "First name",
-                                    hint: "Please enter your first name"),
-                                const SizedBox(height: 10),
-                                TextForm(
-                                  validator: (text) =>
-                                      text.isEmpty ? "Please enter your email" : null,
-                                  controller: _emailController,
-                                  containerWidth: widthDevice * 0.4,
-                                  text: "Email",
-                                  hint: "Please enter your email",
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                TextForm(
-                                    controller: _lastNameController,
-                                    containerWidth: widthDevice * 0.4,
-                                    text: "Last name",
-                                    hint: "Please enter your last name"),
-                                const SizedBox(height: 10),
-                                TextForm(
-                                  controller: _phoneController,
-                                  containerWidth: widthDevice * 0.4,
-                                  text: "Phone",
-                                  hint: "Please enter your phone",
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        TextForm(
-                          validator: (text) => text.isEmpty ? "Please enter a message" : null,
-                          controller: _messageController,
-                          containerWidth: widthDevice * 0.9,
-                          text: "Message",
-                          hint: "Please enter your message $widthDevice",
-                          maxLines: 5,
-                        ),
-                        const SizedBox(height: 10),
-                        MaterialButton(
-                            elevation: 20,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            height: 40,
-                            minWidth: 200,
-                            color: Colors.blue,
-                            child: const Text("Submit"),
-                            onPressed: () async {
-                              logger.d(_firstNameController.text);
-                              if (_formKey.currentState!.validate()) {
-                                // await AddDataFirestore().addResponse(
-                                //   _firstNameController.text,
-                                //   _lastNameController.text,
-                                //   _emailController.text,
-                                //   _phoneController.text,
-                                //   _messageController.text,
-                                // );
-                              }
-                              _formKey.currentState!.reset(); //delete the text from the form
-                              dialogError(context, "Message submitted");
-                            }),
-                        const SizedBox(height: 10),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            )
+            const SizedBox(height: 20),
+            const ContactFormWeb()
           ],
         ));
   }

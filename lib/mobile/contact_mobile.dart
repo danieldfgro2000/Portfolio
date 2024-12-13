@@ -29,52 +29,13 @@ class _ContactMobileState extends State<ContactMobile> {
             )
           ];
         },
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(vertical: 25),
+        body: const SingleChildScrollView(
+          padding: EdgeInsets.symmetric(vertical: 25),
           child: Wrap(
             runSpacing: 20,
             spacing: 20,
             alignment: WrapAlignment.center,
-            children: [
-              const SansBold("Contact me", 35),
-              TextForm(
-                text: "First Name",
-                containerWidth: widthDevice * 0.9,
-                hint: 'Please enter your first name',
-              ),
-              TextForm(
-                text: "Last Name",
-                containerWidth: widthDevice * 0.9,
-                hint: 'Please enter your last name',
-              ),
-              TextForm(
-                text: "Email",
-                containerWidth: widthDevice * 0.9,
-                hint: 'Please enter your email',
-              ),
-              TextForm(
-                text: "Phone Number",
-                containerWidth: widthDevice * 0.9,
-                hint: 'Please enter your phone number',
-              ),
-              TextForm(
-                text: "Message",
-                containerWidth: widthDevice * 0.9,
-                hint: 'Please enter your message',
-                maxLines: 5,
-              ),
-              MaterialButton(
-                elevation: 20,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                minWidth: 200,
-                height: 50,
-                color: Colors.blue,
-                child: const Sans("Submit", 20),
-                onPressed: () {},
-              )
-            ],
+            children: [SansBold("Contact me", 35), ContactFormMobile()],
           ),
         ),
       ),
