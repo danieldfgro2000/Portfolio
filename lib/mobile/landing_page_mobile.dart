@@ -9,28 +9,6 @@ class LandingPageMobile extends StatefulWidget {
 }
 
 class _LandingPageMobileState extends State<LandingPageMobile> {
-  Widget tealContainer(String text, Color firstColor, Color? secondColor) {
-    return Container(
-      padding: const EdgeInsets.all(2),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [firstColor, secondColor ?? firstColor],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: SansBold(text, 15),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     var widthDevice = MediaQuery.of(context).size.width;
@@ -115,38 +93,49 @@ class _LandingPageMobileState extends State<LandingPageMobile> {
           ),
 
           // About, Second Section
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SansBold("About me", 35),
-                const Sans("Hello! I'm Daniel Muncaciu, I specialize in flutter development", 15),
-                const Sans("I strive to ensure astounding performance with state of", 15),
-                const Sans("the art security for Android, iOS, Web, Mac and Linux", 15),
-                const SizedBox(height: 10),
-                tealContainer("Firebase", Colors.amber, null),
-                const SizedBox(height: 10),
+                SansBold("About me", 35),
+                Sans("Hello! I'm Daniel Muncaciu, I specialize in flutter development", 15),
+                Sans("I strive to ensure astounding performance with state of", 15),
+                Sans("the art security for Android, iOS, Web, Mac and Linux", 15),
+                SizedBox(height: 10),
+                ColorBorderContainer(text: "Firebase", firstColor: Colors.amber),
+                SizedBox(height: 10),
                 Wrap(
                   spacing: 7,
                   runSpacing: 7,
                   children: [
-                    tealContainer("Flutter", Colors.blue, null),
-                    tealContainer("Android", Colors.blue, null),
-                    tealContainer("iOS", Colors.blue, null),
+                    ColorBorderContainer(
+                      text: "Flutter",
+                      firstColor: Colors.blue,
+                    ),
+                    ColorBorderContainer(
+                      text: "Android",
+                      firstColor: Colors.blue,
+                    ),
+                    ColorBorderContainer(
+                      text: "iOS",
+                      firstColor: Colors.blue,
+                    ),
                   ],
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: 10),
                 Wrap(
                   spacing: 7,
                   runSpacing: 7,
                   children: [
-                    tealContainer("Django", Colors.blue, Colors.yellow),
-                    tealContainer("Python", Colors.blue, Colors.yellow),
+                    ColorBorderContainer(
+                        text: "Django", firstColor: Colors.blue, secondColor: Colors.yellow),
+                    ColorBorderContainer(
+                        text: "Python", firstColor: Colors.blue, secondColor: Colors.yellow),
                   ],
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: 10),
               ],
             ),
           ),

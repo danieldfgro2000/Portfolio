@@ -11,7 +11,6 @@ class ContactMobile extends StatefulWidget {
 class _ContactMobileState extends State<ContactMobile> {
   @override
   Widget build(BuildContext context) {
-    var widthDevice = MediaQuery.of(context).size.width;
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.white,

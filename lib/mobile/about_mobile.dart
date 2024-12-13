@@ -9,28 +9,6 @@ class AboutMobile extends StatefulWidget {
 }
 
 class _AboutMobileState extends State<AboutMobile> {
-  Widget tealContainer(String text, Color firstColor, Color? secondColor) {
-    return Container(
-      padding: const EdgeInsets.all(2),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [firstColor, secondColor ?? firstColor],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: SansBold(text, 15),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -46,9 +24,9 @@ class _AboutMobileState extends State<AboutMobile> {
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: ListView(
-            children: [
+            children: const [
               // Introduction, First section
-              const CircleAvatar(
+              CircleAvatar(
                 radius: 117,
                 backgroundColor: Colors.blue,
                 child: CircleAvatar(
@@ -60,47 +38,54 @@ class _AboutMobileState extends State<AboutMobile> {
                       backgroundImage: AssetImage("assets/images/dan.JPG"),
                     )),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SansBold("About me", 35),
-                    const Sans(
-                        "Hello! I'm Daniel Muncaciu, I specialize in flutter development", 15),
-                    const Sans("I strive to ensure astounding performance with state of", 15),
-                    const Sans("the art security for Android, iOS, Web, Mac and Linux", 15),
-                    const SizedBox(height: 10),
-                    tealContainer("Firebase", Colors.amber, null),
-                    const SizedBox(height: 10),
+                    SansBold("About me", 35),
+                    Sans("Hello! I'm Daniel Muncaciu, I specialize in flutter development", 15),
+                    Sans("I strive to ensure astounding performance with state of", 15),
+                    Sans("the art security for Android, iOS, Web, Mac and Linux", 15),
+                    SizedBox(height: 10),
+                    ColorBorderContainer(text: "Firebase", firstColor: Colors.amber),
+                    SizedBox(height: 10),
                     Wrap(
                       spacing: 7,
                       runSpacing: 7,
                       children: [
-                        tealContainer("Flutter", Colors.blue, null),
-                        tealContainer("Android", Colors.blue, null),
-                        tealContainer("iOS", Colors.blue, null),
+                        ColorBorderContainer(text: "Flutter", firstColor: Colors.blue),
+                        ColorBorderContainer(text: "Android", firstColor: Colors.blue),
+                        ColorBorderContainer(text: "iOS", firstColor: Colors.blue),
                       ],
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: 10),
                     Wrap(
                       spacing: 7,
                       runSpacing: 7,
                       children: [
-                        tealContainer("Django", Colors.blue, Colors.yellow),
-                        tealContainer("Python", Colors.blue, Colors.yellow),
+                        ColorBorderContainer(
+                          text: "Django",
+                          firstColor: Colors.blue,
+                          secondColor: Colors.yellow,
+                        ),
+                        ColorBorderContainer(
+                          text: "Python",
+                          firstColor: Colors.blue,
+                          secondColor: Colors.yellow,
+                        ),
                       ],
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: 10),
                   ],
                 ),
               ),
-              const SizedBox(height: 40),
+              SizedBox(height: 40),
 
               // Second section
-              const Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   AnimatedCard(
@@ -112,12 +97,11 @@ class _AboutMobileState extends State<AboutMobile> {
                   SizedBox(height: 10),
                 ],
               ),
-              const Sans(
-                  "I'm here to build your presence online with state of the art web apps", 15),
-              const SizedBox(height: 20),
+              Sans("I'm here to build your presence online with state of the art web apps", 15),
+              SizedBox(height: 20),
 
               // App development, Third section
-              const Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(height: 20),
@@ -131,13 +115,13 @@ class _AboutMobileState extends State<AboutMobile> {
                   SizedBox(height: 10),
                 ],
               ),
-              const Sans(
+              Sans(
                   "Do you need a high performance and beautiful app? Don't worry, I got you covered.",
                   15),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
 
               // Backend development, Fourth section
-              const Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(height: 20),
@@ -151,10 +135,10 @@ class _AboutMobileState extends State<AboutMobile> {
                   SizedBox(height: 10),
                 ],
               ),
-              const Sans(
+              Sans(
                   "Do you want your backend to be highly scalable and secure? I'm here to help you.",
                   15),
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
             ],
           ),
         ),

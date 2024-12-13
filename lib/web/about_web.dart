@@ -11,28 +11,6 @@ class AboutWeb extends StatefulWidget {
 class _AboutWebState extends State<AboutWeb> {
   @override
   Widget build(BuildContext context) {
-    Widget tealContainer(String text, Color firstColor, Color? secondColor) {
-      return Container(
-        padding: const EdgeInsets.all(2),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [firstColor, secondColor ?? firstColor],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Container(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: SansBold(text, 15),
-        ),
-      );
-    }
-
     var heightDevice = MediaQuery.of(context).size.height;
     var widthDevice = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -54,34 +32,44 @@ class _AboutWebState extends State<AboutWeb> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Column(
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SansBold("About me", 40),
-                    const SizedBox(height: 15),
-                    const Sans(
-                        "Hello! I'm Daniel Muncaciu, I specialize in flutter development", 15),
-                    const Sans("I strive to ensure astounding performance with state of", 15),
-                    const Sans("the art security for Android iOS, Web, Mac, Linux and Windows", 15),
-                    const SizedBox(height: 10),
-                    tealContainer("Firebase", Colors.amber, null),
-                    const SizedBox(height: 10),
+                    SansBold("About me", 40),
+                    SizedBox(height: 15),
+                    Sans("Hello! I'm Daniel Muncaciu, I specialize in flutter development", 15),
+                    Sans("I strive to ensure astounding performance with state of", 15),
+                    Sans("the art security for Android iOS, Web, Mac, Linux and Windows", 15),
+                    SizedBox(height: 10),
+                    ColorBorderContainer(text: "Firebase", firstColor: Colors.amber),
+                    SizedBox(height: 10),
                     Row(
                       children: [
-                        tealContainer("Flutter", Colors.blue, null),
-                        const SizedBox(width: 10),
-                        tealContainer("Android", Colors.blue, null),
-                        const SizedBox(width: 10),
-                        tealContainer("iOS", Colors.blue, null),
+                        ColorBorderContainer(
+                          text: "Flutter",
+                          firstColor: Colors.blue,
+                        ),
+                        SizedBox(width: 10),
+                        ColorBorderContainer(
+                          text: "Android",
+                          firstColor: Colors.blue,
+                        ),
+                        SizedBox(width: 10),
+                        ColorBorderContainer(
+                          text: "iOS",
+                          firstColor: Colors.blue,
+                        ),
                       ],
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: 10),
                     Row(
                       children: [
-                        tealContainer("Django", Colors.blue, Colors.yellow),
-                        const SizedBox(width: 10),
-                        tealContainer("Python", Colors.blue, Colors.yellow),
+                        ColorBorderContainer(
+                            text: "Django", firstColor: Colors.blue, secondColor: Colors.yellow),
+                        SizedBox(width: 10),
+                        ColorBorderContainer(
+                            text: "Python", firstColor: Colors.blue, secondColor: Colors.yellow),
                       ],
                     )
                   ],

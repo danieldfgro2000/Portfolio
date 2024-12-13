@@ -275,6 +275,42 @@ class AbelCustom extends StatelessWidget {
   }
 }
 
+class ColorBorderContainer extends StatelessWidget {
+  final String text;
+  final Color firstColor;
+  final Color? secondColor;
+  const ColorBorderContainer({
+    super.key,
+    required this.text,
+    required this.firstColor,
+    this.secondColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(2),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [firstColor, secondColor ?? firstColor],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: SansBold(text, 15),
+      ),
+    );
+    ;
+  }
+}
+
 class TextForm extends StatelessWidget {
   final double containerWidth;
   final String text;
@@ -338,6 +374,14 @@ class TextForm extends StatelessWidget {
   }
 }
 
+final TextEditingController _firstNameController = TextEditingController();
+final TextEditingController _lastNameController = TextEditingController();
+final TextEditingController _emailController = TextEditingController();
+final TextEditingController _phoneController = TextEditingController();
+final TextEditingController _messageController = TextEditingController();
+
+var logger = Logger();
+
 class ContactFormWeb extends StatefulWidget {
   const ContactFormWeb({super.key});
 
@@ -346,14 +390,7 @@ class ContactFormWeb extends StatefulWidget {
 }
 
 class _ContactFormWebState extends State<ContactFormWeb> {
-  final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _messageController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  var logger = Logger();
-
   @override
   Widget build(BuildContext context) {
     var widthDevice = MediaQuery.of(context).size.width;
@@ -455,14 +492,7 @@ class ContactFormMobile extends StatefulWidget {
 }
 
 class _ContactFormMobileState extends State<ContactFormMobile> {
-  final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _messageController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  var logger = Logger();
-
   @override
   Widget build(BuildContext context) {
     var widthDevice = MediaQuery.of(context).size.width;

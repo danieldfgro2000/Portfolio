@@ -122,14 +122,14 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                     width: widthDevice * 0.5,
                     height: heightDevice * 0.5,
                   ),
-                  Flexible(
+                  const Flexible(
                     fit: FlexFit.loose,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const SansBold("About me", 30),
-                        const Sans(
+                        SansBold("About me", 30),
+                        Sans(
                             "I am a software developer with a passion for creating software that is both"
                             " beautiful and functional. \nI have a strong foundation in programming and"
                             " software development, and I am always looking to learn new technologies "
@@ -138,126 +138,43 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                             "I am always looking for new opportunities to grow and develop"
                             " as a software developer.",
                             15),
-                        const SizedBox(height: 15),
-                        const Sans("I strive to ensure astounding performance with state of", 15),
-                        const Sans("the art security for Android, iOS, Web, Mac and Windows", 15),
-                        const SizedBox(height: 15),
+                        SizedBox(height: 15),
+                        Sans("I strive to ensure astounding performance with state of", 15),
+                        Sans("the art security for Android, iOS, Web, Mac and Windows", 15),
+                        SizedBox(height: 15),
                         Row(
                           children: [
-                            Container(
-                              padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.amber,
-                                  style: BorderStyle.solid,
-                                  width: 2,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: const SansBold("Firebase", 20),
-                            ),
+                            ColorBorderContainer(text: "Firebase", firstColor: Colors.amber),
                           ],
                         ),
-                        const SizedBox(height: 10),
+                        SizedBox(height: 10),
                         Flexible(
                           child: Row(
                             children: [
-                              Container(
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.blue,
-                                    style: BorderStyle.solid,
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: const SansBold("Flutter", 20),
-                              ),
-                              const SizedBox(width: 10),
-                              Container(
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.blue,
-                                    style: BorderStyle.solid,
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: const SansBold("Android", 20),
-                              ),
-                              const SizedBox(width: 10),
-                              Container(
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.blue,
-                                    style: BorderStyle.solid,
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: const SansBold("iOS", 20),
-                              ),
-                              const SizedBox(width: 10),
-                              Container(
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.blue,
-                                    style: BorderStyle.solid,
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: const SansBold("Windows", 20),
-                              ),
+                              ColorBorderContainer(text: "Flutter", firstColor: Colors.blue),
+                              SizedBox(width: 10),
+                              ColorBorderContainer(text: "Android", firstColor: Colors.blue),
+                              SizedBox(width: 10),
+                              ColorBorderContainer(text: "iOS", firstColor: Colors.blue),
+                              SizedBox(width: 10),
+                              ColorBorderContainer(text: "Windows", firstColor: Colors.blue),
                             ],
                           ),
                         ),
-                        const SizedBox(height: 10),
+                        SizedBox(height: 10),
                         Row(
                           children: [
-                            Container(
-                              padding: const EdgeInsets.all(2),
-                              decoration: BoxDecoration(
-                                gradient: const LinearGradient(
-                                  colors: [Colors.blue, Colors.yellow],
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Container(
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: const SansBold("Django", 20),
-                              ),
+                            ColorBorderContainer(
+                              text: "Django",
+                              firstColor: Colors.blue,
+                              secondColor: Colors.yellow,
                             ),
-                            const SizedBox(width: 10),
-                            Container(
-                              padding: const EdgeInsets.all(2),
-                              decoration: BoxDecoration(
-                                gradient: const LinearGradient(
-                                  colors: [Colors.blue, Colors.yellow],
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Container(
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: const SansBold("Python", 20),
-                              ),
-                            ),
+                            SizedBox(width: 10),
+                            ColorBorderContainer(
+                                text: "Python",
+                                firstColor: Colors.blue,
+                                secondColor: Colors.yellow),
+                            SizedBox(width: 10),
                           ],
                         )
                       ],
