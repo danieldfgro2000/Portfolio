@@ -663,7 +663,6 @@ class _AnimatedCardState extends State<AnimatedCard> with SingleTickerProviderSt
 }
 
 class AddDataFirestore {
-  var logger = Logger();
 // CollectionReference response = FirebaseFirestore.instance.collection('messages');
 //
 // Future<void> addResponse(
