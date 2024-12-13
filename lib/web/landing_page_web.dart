@@ -440,9 +440,19 @@ class _LandingPageWebState extends State<LandingPageWeb> {
                             minWidth: 200,
                             color: Colors.blue,
                             child: const Text("Submit"),
-                            onPressed: () {
+                            onPressed: () async {
                               logger.d(_firstNameController.text);
-                              _formKey.currentState!.validate();
+                              if (_formKey.currentState!.validate()) {
+                                // await AddDataFirestore().addResponse(
+                                //   _firstNameController.text,
+                                //   _lastNameController.text,
+                                //   _emailController.text,
+                                //   _phoneController.text,
+                                //   _messageController.text,
+                                // );
+                              }
+                              _formKey.currentState!.reset(); //delete the text from the form
+                              dialogError(context, "Message submitted");
                             }),
                         const SizedBox(height: 10),
                       ],

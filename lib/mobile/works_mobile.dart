@@ -105,7 +105,7 @@ class _WorksMobileState extends State<WorksMobile> {
                   SansBold("Portfolio", 20),
                   SizedBox(height: 20),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Sans(
                       "Deployed on Android, iOS and Web, the portfolio was truly an achievement. I used Flutter to develop the beautiful and responsive UI and Firebase for the backend.",
                       15,

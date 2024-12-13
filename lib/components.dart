@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logger/logger.dart';
 
 class TabsWeb extends StatefulWidget {
   final String title;
@@ -275,21 +276,36 @@ class _AnimatedCardState extends State<AnimatedCard> with SingleTickerProviderSt
 }
 
 class AddDataFirestore {
-  CollectionReference response = FirebaseFirestore.instance.collection('messages');
+  var logger = Logger();
+// CollectionReference response = FirebaseFirestore.instance.collection('messages');
+//
+// Future<void> addResponse(
+//   String firstName,
+//   String lastName,
+//   String email,
+//   String phoneNumber,
+//   String message,
+// ) async {
+//   await response
+//       .add({
+//         'firstName': firstName,
+//         'lastName': lastName,
+//         'email': email,
+//         'phoneNumber': phoneNumber,
+//         'message': message,
+//       })
+//       .then((value) => logger.i('Success'))
+//       .catchError((error) => logger.e('Error: $error'));
+// }
+}
 
-  Future<void> addResponse(
-    String firstName,
-    String lastName,
-    String email,
-    String phoneNumber,
-    String message,
-  ) async {
-    await response.add({
-      'firstName': firstName,
-      'lastName': lastName,
-      'email': email,
-      'phoneNumber': phoneNumber,
-      'message': message,
-    });
-  }
+Future dialogError(BuildContext context, String error) {
+  return showDialog(
+      context: context,
+      builder: (context) => const AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+            ),
+            title: SansBold("Message submitted", 20),
+          ));
 }
