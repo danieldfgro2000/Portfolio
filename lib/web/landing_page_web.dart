@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:logger/logger.dart';
 import 'package:portfolio/components.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class LandingPageWeb extends StatefulWidget {
   const LandingPageWeb({super.key});
@@ -12,15 +10,6 @@ class LandingPageWeb extends StatefulWidget {
 }
 
 class _LandingPageWebState extends State<LandingPageWeb> {
-  urlLauncher(String imagePath, String url) {
-    return IconButton(
-      icon: SvgPicture.asset(imagePath, width: 35),
-      onPressed: () async {
-        await launchUrl(Uri.parse(url));
-      },
-    );
-  }
-
   var logger = Logger();
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
@@ -35,60 +24,10 @@ class _LandingPageWebState extends State<LandingPageWeb> {
     var widthDevice = MediaQuery.of(context).size.width;
 
     return Scaffold(
-        drawer: Drawer(
-          backgroundColor: Colors.white,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const CircleAvatar(
-                radius: 72,
-                backgroundColor: Colors.blue,
-                child: CircleAvatar(
-                  radius: 70,
-                  backgroundColor: Colors.white,
-                  backgroundImage: AssetImage("assets/images/dan.jpg"),
-                ),
-              ),
-              const SizedBox(height: 15),
-              const SansBold("Daniel Muncaciu", 30),
-              const SizedBox(height: 15),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  urlLauncher(
-                    "assets/images/instagram.svg",
-                    "https://github.com/DanielMuncaciu",
-                  ),
-                  urlLauncher(
-                    "assets/images/github.svg",
-                    "https://github.com/danieldfgro2000",
-                  ),
-                  urlLauncher(
-                    "assets/images/twitter.svg",
-                    "https://twitter.com/DanMuncaciu",
-                  ),
-                ],
-              )
-            ],
-          ),
-        ),
+        drawer: const DrawersWeb(),
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: const Row(children: [
-            Spacer(
-              flex: 3,
-            ),
-            TabsWeb(title: "Home", route: '/'),
-            Spacer(),
-            TabsWeb(title: "Works", route: '/works'),
-            Spacer(),
-            TabsWeb(title: "About", route: '/about'),
-            Spacer(),
-            TabsWeb(title: "Blog", route: '/blog'),
-            Spacer(),
-            TabsWeb(title: "Contact", route: '/contact'),
-            Spacer(),
-          ]),
+          title: const TabsWebList(),
           centerTitle: true,
           elevation: 0,
           iconTheme: const IconThemeData(size: 25, color: Colors.black),

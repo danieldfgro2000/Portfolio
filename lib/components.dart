@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:logger/logger.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TabsWeb extends StatefulWidget {
   final String title;
@@ -53,6 +55,34 @@ class _TabsWebState extends State<TabsWeb> {
   }
 }
 
+class TabsWebList extends StatefulWidget {
+  const TabsWebList({super.key});
+
+  @override
+  State<TabsWebList> createState() => _TabsWebListState();
+}
+
+class _TabsWebListState extends State<TabsWebList> {
+  @override
+  Widget build(BuildContext context) {
+    return const Row(
+      children: [
+        Spacer(flex: 3),
+        TabsWeb(title: 'Home', route: '/'),
+        Spacer(),
+        TabsWeb(title: "Works", route: '/works'),
+        Spacer(),
+        TabsWeb(title: "Contact", route: '/contact'),
+        Spacer(),
+        TabsWeb(title: "Blog", route: '/blog'),
+        Spacer(),
+        TabsWeb(title: "About", route: '/about'),
+        Spacer(),
+      ],
+    );
+  }
+}
+
 class TabsMobile extends StatefulWidget {
   final String text;
   final String route;
@@ -81,6 +111,115 @@ class _TabsMobileState extends State<TabsMobile> {
         onPressed: () {
           Navigator.of(context).pushNamed(widget.route);
         });
+  }
+}
+
+urlLauncher(String imagePath, String url) {
+  return IconButton(
+    icon: SvgPicture.asset(imagePath, width: 35),
+    onPressed: () async {
+      await launchUrl(Uri.parse(url));
+    },
+  );
+}
+
+class DrawersWeb extends StatelessWidget {
+  const DrawersWeb({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      backgroundColor: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const CircleAvatar(
+            radius: 72,
+            backgroundColor: Colors.blue,
+            child: CircleAvatar(
+              radius: 70,
+              backgroundColor: Colors.white,
+              backgroundImage: AssetImage("assets/images/dan.jpg"),
+            ),
+          ),
+          const SizedBox(height: 15),
+          const SansBold("Daniel Muncaciu", 30),
+          const SizedBox(height: 15),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              urlLauncher(
+                "assets/images/instagram.svg",
+                "https://github.com/DanielMuncaciu",
+              ),
+              urlLauncher(
+                "assets/images/github.svg",
+                "https://github.com/danieldfgro2000",
+              ),
+              urlLauncher(
+                "assets/images/twitter.svg",
+                "https://twitter.com/DanMuncaciu",
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class DrawerMobile extends StatelessWidget {
+  const DrawerMobile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          DrawerHeader(
+            padding: const EdgeInsets.only(bottom: 20),
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(width: 1, color: Colors.black),
+              ),
+              child: const CircleAvatar(
+                backgroundImage: AssetImage("assets/images/dan.JPG"),
+                radius: 250,
+              ),
+            ),
+          ),
+          const TabsMobile(text: "Home", route: "/"),
+          const SizedBox(height: 20),
+          const TabsMobile(text: "Works", route: "/works"),
+          const SizedBox(height: 20),
+          const TabsMobile(text: "About", route: "/about"),
+          const SizedBox(height: 20),
+          const TabsMobile(text: "Blog", route: "/blog"),
+          const SizedBox(height: 20),
+          const TabsMobile(text: "Contact", route: "/contact"),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              urlLauncher(
+                "assets/images/instagram.svg",
+                "https://github.com/DanielMuncaciu",
+              ),
+              urlLauncher(
+                "assets/images/github.svg",
+                "https://github.com/danieldfgro2000",
+              ),
+              urlLauncher(
+                "assets/images/twitter.svg",
+                "https://twitter.com/DanMuncaciu",
+              ),
+            ],
+          )
+        ],
+      ),
+    );
   }
 }
 
