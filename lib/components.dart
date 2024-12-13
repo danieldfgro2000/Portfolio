@@ -118,6 +118,7 @@ class AbelCustom extends StatelessWidget {
   final double size;
   final Color? color;
   final FontWeight? fontWeight;
+
   const AbelCustom(
       {super.key, required this.text, required this.size, this.color, this.fontWeight});
 
@@ -140,6 +141,7 @@ class TextForm extends StatelessWidget {
   final String hint;
   final int maxLines;
   final TextEditingController? controller;
+  final FormFieldValidator? validator;
 
   const TextForm({
     required this.containerWidth,
@@ -147,6 +149,7 @@ class TextForm extends StatelessWidget {
     required this.hint,
     this.maxLines = 1,
     this.controller,
+    this.validator,
     super.key,
   });
 
@@ -162,6 +165,7 @@ class TextForm extends StatelessWidget {
         SizedBox(
           width: containerWidth,
           child: TextFormField(
+            validator: validator,
             controller: controller,
             inputFormatters: [
               FilteringTextInputFormatter.allow((RegExp(r'[a-z A-Z0-9]'))),
@@ -174,6 +178,14 @@ class TextForm extends StatelessWidget {
               ),
               focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.blueAccent, width: 2),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+              errorBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.red, width: 1),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+              focusedErrorBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.redAccent, width: 2),
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
               hintText: hint,
@@ -259,5 +271,25 @@ class _AnimatedCardState extends State<AnimatedCard> with SingleTickerProviderSt
         ),
       ),
     );
+  }
+}
+
+class AddDataFirestore {
+  CollectionReference response = FirebaseFirestore.instance.collection('messages');
+
+  Future<void> addResponse(
+    String firstName,
+    String lastName,
+    String email,
+    String phoneNumber,
+    String message,
+  ) async {
+    await response.add({
+      'firstName': firstName,
+      'lastName': lastName,
+      'email': email,
+      'phoneNumber': phoneNumber,
+      'message': message,
+    });
   }
 }
